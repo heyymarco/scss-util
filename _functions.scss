@@ -1,0 +1,12 @@
+@function rems($pixels){
+    @return #{$pixels / 16}rem;
+}
+
+@function opt-text-color($bg-color, $text-dark, $text-light){
+    @if (color.lightness($bg-color) >= 50) {
+        @return $text-dark;
+    }
+    @else {
+        @return $text-light;
+    }
+}

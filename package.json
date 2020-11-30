@@ -1,0 +1,27 @@
+{
+  "name": "@heymarco/scss-util",
+  "version": "1.0.0",
+  "description": "a set of common useful functions & mixins for making coding in scss easier.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyymarco/scss-util.git"
+  },
+  "keywords": [
+    "scss",
+    "sass",
+    "css",
+    "common",
+    "utility",
+    "mixin",
+    "function"
+  ],
+  "author": "HeyMarco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heyymarco/scss-util/issues"
+  },
+  "homepage": "https://github.com/heyymarco/scss-util#readme"
+}
