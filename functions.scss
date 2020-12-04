@@ -1,8 +1,17 @@
+/// Convert pixel unit to rems unit
+/// @param $pixel - value in pixels.
+/// @return - value in rems.
 @function rems($pixels){
     @return #{$pixels / 16}rem;
 }
 
-@function opt-text-color($bg-color, $text-dark, $text-light){
+
+/// Get the most contrast text (foreground) color based on a background color.
+/// @param $bg-color - the background color behind the text.
+/// @param $text-dark - define your dark color.
+/// @param $text-light - define your light color.
+/// @return - a text (foreground) color.
+@function opt-text-color($bg-color, $text-dark: #000000, $text-light: #ffffff){
     @if (color.lightness($bg-color) >= 50) {
         @return $text-dark;
     }
