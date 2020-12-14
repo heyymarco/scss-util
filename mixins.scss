@@ -1,0 +1,28 @@
+@use "functions" as *;
+
+
+
+@mixin selector($selector) {
+    @if (str-not-empty($selector)) { #{$selector} {
+        @content; //sub1, .sub2 { }
+    }}
+    @else {
+        @content; // { }
+    }
+}
+
+
+@mixin selector-combine($base-selector, $selector) {
+    @if (str-not-empty($base-selector)) {
+        @include selector($base-selector) {
+            @include selector(str-replace($selector, ".", "&.")) {
+                @content;
+            }
+        }
+    }
+    @else {
+        @include selector($selector) {
+            @content;
+        }
+    }
+}
