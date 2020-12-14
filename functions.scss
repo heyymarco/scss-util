@@ -60,3 +60,14 @@
 
   @return string.length(str-replace($string, " ", "")) > 0;
 }
+
+
+
+@function cssvar($var-prefix) {
+  @if (str-not-empty($var-prefix)) {
+    @return "--#{$var-prefix}-";
+  }
+  @else {
+    @return "--";
+  }
+}
