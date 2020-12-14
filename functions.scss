@@ -33,13 +33,13 @@
 /// @param {String} $replace ('') - New value
 /// @return {String} - Updated string
 @function str-replace($string, $search, $replace: '') {
-  $index: str-index($string, $search);
-  
-  @if $index {
-    @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + str-length($search)), $search, $replace);
-  }
-  
-  @return $string;
+    $index: str-index($string, $search);
+    
+    @if $index {
+        @return string.slice($string, 1, $index - 1) + $replace + str-replace(string.slice($string, $index + str-length($search)), $search, $replace);
+    }
+    
+    @return $string;
 }
 
 
@@ -48,10 +48,10 @@
 /// @param {string} $string string to test
 /// @return {Boolean} true if the given string is null or empty string "", otherwise false
 @function str-is-empty($string) {
-  @if ($string == null) { @return true; }
-  @if ($string == "") { @return true; }
+    @if ($string == null) { @return true; }
+    @if ($string == "") { @return true; }
 
-  @return string.length(str-replace($string, " ", "")) == 0;
+    @return string.length(str-replace($string, " ", "")) == 0;
 }
 
 
@@ -59,19 +59,39 @@
 /// @param {string} $string string to test
 /// @return {Boolean} true if the given string is not null and not empty string "", otherwise false
 @function str-not-empty($string) {
-  @if ($string == null) { @return false; }
-  @if ($string == "") { @return false; }
+    @if ($string == null) { @return false; }
+    @if ($string == "") { @return false; }
 
-  @return string.length(str-replace($string, " ", "")) > 0;
+    @return string.length(str-replace($string, " ", "")) > 0;
 }
 
 
 
 @function cssvar($var-prefix) {
-  @if (str-not-empty($var-prefix)) {
-    @return "--#{$var-prefix}-";
-  }
-  @else {
-    @return "--";
-  }
+    @if (str-not-empty($var-prefix)) {
+        @return "--#{$var-prefix}-";
+    }
+    @else {
+        @return "--";
+    }
+}
+
+
+@function var-prefix-combine($var-prefix-a, $var-prefix-b) {
+    @if (str-not-empty($var-prefix-a)) {
+        @if (str-not-empty($var-prefix-b)) {
+            @return "#{$var-prefix-a}-#{$var-prefix-b}";
+        }
+        @else {
+            @return $var-prefix-a;
+        }
+    }
+    @else {
+        @if (str-not-empty($var-prefix-b)) {
+            @return $var-prefix-b;
+        }
+        @else {
+            @return "";
+        }
+    }
 }
