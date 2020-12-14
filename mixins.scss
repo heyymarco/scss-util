@@ -12,16 +12,28 @@
 }
 
 
-@mixin selector-combine($base-selector, $selector) {
+@mixin selector-combine($base-selector, $sub-selector) {
     @if (str-not-empty($base-selector)) {
-        @include selector($base-selector) {
-            @include selector(str-replace($selector, ".", "&.")) {
+        @if (str-not-empty($sub-selector)) {
+            @include selector($base-selector) {
+                @include selector(str-replace($sub-selector, ".", "&.")) {
+                    @content;
+                }
+            }
+        }
+        @else {
+            @include selector($base-selector) {
                 @content;
             }
         }
     }
     @else {
-        @include selector($selector) {
+        @if (str-not-empty($sub-selector)) {
+            @include selector(str-replace($sub-selector, ".", "&.")) {
+                @content;
+            }
+        }
+        @else {
             @content;
         }
     }
