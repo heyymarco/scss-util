@@ -77,7 +77,7 @@
 }
 
 
-@function var-prefix-combine($var-prefix-a, $var-prefix-b) {
+@function part-combine($var-prefix-a, $var-prefix-b) {
     @if (str-not-empty($var-prefix-a)) {
         @if (str-not-empty($var-prefix-b)) {
             @return "#{$var-prefix-a}-#{$var-prefix-b}";

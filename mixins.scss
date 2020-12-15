@@ -38,3 +38,28 @@
         }
     }
 }
+
+
+@mixin declare-alias-class($alias, $class) {
+    @if (str-is-empty($alias)) { @error "$alias cannot be empty."; }
+
+    @include selector($alias) {
+        @content;
+    }
+
+    @include selector($class) {
+        @extend #{$alias};
+    }
+}
+
+@mixin declare-alias-base-class($alias, $base, $class) {
+    @if (str-is-empty($alias)) { @error "$alias cannot be empty."; }
+
+    @include selector($alias) {
+        @content;
+    }
+
+    @include selector-combine($base, $class) {
+        @extend #{$alias};
+    }
+}
