@@ -16,7 +16,7 @@
     @if (str-not-empty($base-selector)) {
         @if (str-not-empty($sub-selector)) {
             @include selector($base-selector) {
-                @include selector(str-replace($sub-selector, ".", "&.")) {
+                @include selector(selector-parent($sub-selector)) {
                     @content;
                 }
             }
@@ -29,7 +29,7 @@
     }
     @else {
         @if (str-not-empty($sub-selector)) {
-            @include selector(str-replace($sub-selector, ".", "&.")) {
+            @include selector(selector-parent($sub-selector)) {
                 @content;
             }
         }
